@@ -26,7 +26,7 @@ module.exports = class SingleBarChart {
 		return this;
 	};
 
-	async createChart() {
+	createChart() {
 		
 		const { createCanvas } = require("@napi-rs/canvas"); 
 		
