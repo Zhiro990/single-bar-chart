@@ -55,7 +55,7 @@ module.exports = class SingleBarChart {
 			ctx.fillText("• " + data.name + " (" + data.percentage + "%)" , 150, 790 + (index + 1) * 110, 1748); //Write the text
 		});
 		
-		let res = await canvas.encode("png");
+		let res = canvas.toBuffer("image/png");
 		
 		return res;
 		
