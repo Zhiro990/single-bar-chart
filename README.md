@@ -13,10 +13,6 @@ This project can help you in making single bar chart.
 
 > *Coming soon...*
 
-#### Example
-
-> *Coming soon...*
-
 ---
 
 *Note: This project is under development.*
