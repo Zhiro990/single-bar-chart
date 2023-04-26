@@ -7,6 +7,8 @@ module.exports = class SingleBarChart {
 	};
 
 	setTitle(title) {
+		if (!title)
+			throw new Error("The \"title\" argument cannot be empty.");
 		this.title = title;
 		return this;
 	};
@@ -14,10 +16,31 @@ module.exports = class SingleBarChart {
 	addData(name, percentage, hexcolor) {
 		if (this.datas.length == 6)
 			throw new Error("The amount of data cannot be more than 6.");
+		if (!name)
+			throw new Error("The \"name\" argument cannot be empty.");
+		if (typeof name != "string")
+			throw new Error("The \"name\" argument must be a string.");
 		if (name.length > 22)
-			throw new Error("The number of characters in the data name cannot be more than 22.");
+			throw new Error("The number of characters in the name cannot be more than 22.");
+		if (!percentage && percentage != 0)
+			throw new Error("The \"percentage\" argument cannot be empty.");
+		if (typeof percentage != "number")
+			throw new Error("The \"percentage\" argument must be a number.");
+		if (percentage < 0)
+			throw new Error("The \"percentage\" argument is invalid.")
 		if (eval(this.datas.map(data => data.percentage).join(" + ") + " + " + percentage) > 100)
 			throw new Error("The total percentage exceeds 100%.");
+		let x = "ABCDEF1234567890";
+		if (hexcolor) {
+			if (hexcolor[0] != "#" || (hexcolor[0] == "#" && hexcolor.length < 7) || hexcolor.length > 7 || hexcolor.split("").find(char => !x.includes(char)))
+				throw new Error("The \"hexcolor\" argument is invalid.");
+		};
+		if (!hexcolor) {
+			hexcolor = "#";
+			for (i=0;i<6;i++) {
+				hexcolor += x[Math.floor(Math.random() * 16)];
+			};
+		};
 		this.datas.push({
 			name,
 			percentage,
@@ -27,6 +50,9 @@ module.exports = class SingleBarChart {
 	};
 
 	createChart() {
+
+		if (!this.title)
+			throw new Error("The chart title cannot be empty!");
 		
 		const { createCanvas } = require("@napi-rs/canvas"); 
 		
