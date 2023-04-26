@@ -9,6 +9,8 @@ module.exports = class SingleBarChart {
 	setTitle(title) {
 		if (!title)
 			throw new Error("The \"title\" argument cannot be empty.");
+		if (typeof title != "string")
+			throw new Error("The \"title\" argument must be a string.");
 		this.title = title;
 		return this;
 	};
@@ -16,7 +18,7 @@ module.exports = class SingleBarChart {
 	addData(name, percentage, hexcolor) {
 		if (this.datas.length == 6)
 			throw new Error("The amount of data cannot be more than 6.");
-		if (!name)
+		if (!name && name != 0)
 			throw new Error("The \"name\" argument cannot be empty.");
 		if (typeof name != "string")
 			throw new Error("The \"name\" argument must be a string.");
