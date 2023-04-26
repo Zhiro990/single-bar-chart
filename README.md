@@ -8,7 +8,6 @@ This project can help you in making single bar chart.
 
 > *Coming soon...*
 
-
 #### Usage
 
 > *Coming soon...*
