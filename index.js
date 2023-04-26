@@ -27,17 +27,17 @@ module.exports = class SingleBarChart {
 		if (typeof percentage != "number")
 			throw new Error("The \"percentage\" argument must be a number.");
 		if (percentage < 0)
-			throw new Error("The \"percentage\" argument is invalid.")
+			throw new Error("The \"percentage\" argument is invalid.");
 		if (eval(this.datas.map(data => data.percentage).join(" + ") + " + " + percentage) > 100)
 			throw new Error("The total percentage exceeds 100%.");
 		let x = "ABCDEF1234567890";
 		if (hexcolor) {
-			if (hexcolor[0] != "#" || (hexcolor[0] == "#" && hexcolor.length < 7) || hexcolor.length > 7 || hexcolor.split("").find(char => !x.includes(char)))
+			if (hexcolor[0] != "#" || (hexcolor[0] == "#" && hexcolor.length < 7) || hexcolor.length > 7 || hexcolor.slice(1).split("").find(char => !x.includes(char)))
 				throw new Error("The \"hexcolor\" argument is invalid.");
 		};
 		if (!hexcolor) {
 			hexcolor = "#";
-			for (i=0;i<6;i++) {
+			for (let i=0;i<6;i++) {
 				hexcolor += x[Math.floor(Math.random() * 16)];
 			};
 		};
