@@ -78,9 +78,9 @@
 		return this;
 	};
 
-	async createChart() {
+	static async createChart(chart) {
 
-		if (!this.title)
+		if (!chart.title)
 			throw new Error("The chart title cannot be empty!");
 		
 		const { createCanvas, loadImage } = require("@napi-rs/canvas"); 
@@ -89,18 +89,18 @@
 		let ctx = canvas.getContext("2d");
 
 		ctx.font = "130px DejaVu Sans Mono"; //Font for the title
-		if (this.background) {
-			let image = await loadImage(this.background);
+		if (chart.background) {
+			let image = await loadImage(chart.background);
 			ctx.drawImage(image, 0, 0, canvas.width, canvas.height); //Background (Image)
 		} else {
-			ctx.fillStyle = this.theme[0]; //Background color
+			ctx.fillStyle = chart.theme[0]; //Background color
 			ctx.fillRect(0, 0, 2048, 1600); //Background (Theme)
 		};
 		ctx.textAlign = "center"; //The align of the title
-		ctx.fillStyle = this.theme[2]; //The color of the title
-		ctx.fillText(this.title, 2048 / 2, 245, 1748); //Write the title
+		ctx.fillStyle = chart.theme[2]; //The color of the title
+		ctx.fillText(chart.title, 2048 / 2, 245, 1748); //Write the title
 		ctx.lineWidth = 15; //Border width
-		ctx.strokeStyle = this.theme[1]; //Border color
+		ctx.strokeStyle = chart.theme[1]; //Border color
 		ctx.strokeRect(150, 395, 1748, 275); //Border (Theme)
 		ctx.strokeRect(7.5, 7.5, 2033, 1585); //Border (Theme)
 		ctx.font = "100px DejaVu Sans Mono"; //The font of the information
@@ -108,7 +108,7 @@
 
 		let total_percentage = 0;
 		
-		this.datas.forEach((data, index) => { //Write the information
+		chart.datas.forEach((data, index) => { //Write the information
 			ctx.fillStyle = data.hexcolor; //The color of the text
 			ctx.fillRect(157.5 + (1733 * (total_percentage / 100)), 402.5, 1733 * (data.percentage / 100), 260); //Fill the chart
 			total_percentage += data.percentage;
