@@ -1,8 +1,9 @@
-module.exports = class SingleBarChart {
+ module.exports = class SingleBarChart {
 
 	constructor() {
 		this.title = "";
 		this.datas = [];
+		this.background = "";
 		this.theme = ["#000000", "#FFFFFF", "#FFFFFF"];
 		return this;
 	};
@@ -19,9 +20,8 @@ module.exports = class SingleBarChart {
 	setBackground(path_or_buffer) {
 		if (!path_or_buffer)
 			throw new Error("The \"path_or_buffer\" argument cannot be empty.");
-		ctx.loadImage(path_or_buffer).then(data => {
-			ctx.drawImage(data, 0, 0, canvas.width, canvas.height);
-		});
+		this.background = path_or_buffer;
+		return this;
 	};
 	
 	setTheme(backgroundcolor, bordercolor, titlecolor) {
@@ -89,15 +89,21 @@ module.exports = class SingleBarChart {
 		let ctx = canvas.getContext("2d");
 
 		ctx.font = "130px DejaVu Sans Mono"; //Font for the title
-		ctx.fillStyle = this.theme[0]; //Background color
-		ctx.fillRect(0, 0, 2048, 1600); //Background
+		if (this.background) {
+			ctx.loadImage(this.background).then(image => {
+				ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+			});
+		} else {
+			ctx.fillStyle = this.theme[0]; //Background color
+			ctx.fillRect(0, 0, 2048, 1600); //Background (Theme)
+		};
 		ctx.textAlign = "center"; //The align of the title
 		ctx.fillStyle = this.theme[2]; //The color of the title
 		ctx.fillText(this.title, 2048 / 2, 245, 1748); //Write the title
 		ctx.lineWidth = 15; //Border width
 		ctx.strokeStyle = this.theme[1]; //Border color
-		ctx.strokeRect(150, 395, 1748, 275); //Square in the middle
-		ctx.strokeRect(7.5, 7.5, 2033, 1585); //Border
+		ctx.strokeRect(150, 395, 1748, 275); //Border (Theme)
+		ctx.strokeRect(7.5, 7.5, 2033, 1585); //Border (Theme)
 		ctx.font = "100px DejaVu Sans Mono"; //The font of the information
 		ctx.textAlign = "left"; //The align of the information
 
