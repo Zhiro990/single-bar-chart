@@ -83,15 +83,15 @@
 		if (!this.title)
 			throw new Error("The chart title cannot be empty!");
 		
-		const { createCanvas } = require("@napi-rs/canvas"); 
+		const { createCanvas, loadImage } = require("@napi-rs/canvas"); 
 		
 		let canvas = createCanvas(2048, 1600);
 		let ctx = canvas.getContext("2d");
 
 		ctx.font = "130px DejaVu Sans Mono"; //Font for the title
 		if (this.background) {
-			ctx.loadImage(this.background).then(image => {
-				ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+			loadImage(this.background).then(image => {
+				ctx.drawImage(image, 0, 0, canvas.width, canvas.height); //Background (Image)
 			});
 		} else {
 			ctx.fillStyle = this.theme[0]; //Background color
