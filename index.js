@@ -78,7 +78,7 @@
 		return this;
 	};
 
-	createChart() {
+	async createChart() {
 
 		if (!this.title)
 			throw new Error("The chart title cannot be empty!");
@@ -90,9 +90,8 @@
 
 		ctx.font = "130px DejaVu Sans Mono"; //Font for the title
 		if (this.background) {
-			loadImage(this.background).then(image => {
-				ctx.drawImage(image, 0, 0, canvas.width, canvas.height); //Background (Image)
-			});
+			let image = await loadImage(this.background);
+			ctx.drawImage(image, 0, 0, canvas.width, canvas.height); //Background (Image)
 		} else {
 			ctx.fillStyle = this.theme[0]; //Background color
 			ctx.fillRect(0, 0, 2048, 1600); //Background (Theme)
