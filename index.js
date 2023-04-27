@@ -3,6 +3,7 @@ module.exports = class SingleBarChart {
 	constructor() {
 		this.title = "";
 		this.datas = [];
+		this.theme = ["#000000", "#FFFFFF", "#FFFFFF"];
 		return this;
 	};
 
@@ -12,6 +13,23 @@ module.exports = class SingleBarChart {
 		if (typeof title != "string")
 			throw new Error("The \"title\" argument must be a string.");
 		this.title = title;
+		return this;
+	};
+
+	setTheme(backgroundcolor, bordercolor, titlecolor) {
+		if (backgroundcolor) {
+			if (backgroundcolor[0] != "#" || (backgroundcolor[0] == "#" && backgroundcolor.length < 7) || backgroundcolor.length > 7 || backgroundcolor.slice(1).split("").find(char => !x.includes(char)))
+				throw new Error("The \"backgroundcolor\" argument is invalid.");
+		};
+		if (bordercolor) {
+			if (bordercolor[0] != "#" || (bordercolor[0] == "#" && bordercolor.length < 7) || bordercolor.length > 7 || bordercolor.slice(1).split("").find(char => !x.includes(char)))
+				throw new Error("The \"bordercolor\" argument is invalid.");
+		};
+		if (titlecolor) {
+			if (titlecolor[0] != "#" || (titlecolor[0] == "#" && titlecolor.length < 7) || titlecolor.length > 7 || titlecolor.slice(1).split("").find(char => !x.includes(char)))
+				throw new Error("The \"titlecolor\" argument is invalid.");
+		};
+		this.theme = [backgroundcolor || "#000000", bordercolor || "#FFFFFF", titlecolor || "#FFFFFF"];
 		return this;
 	};
 
@@ -62,13 +80,13 @@ module.exports = class SingleBarChart {
 		let ctx = canvas.getContext("2d");
 
 		ctx.font = "130px DejaVu Sans Mono"; //Font for the title
-		ctx.fillStyle = "#1A172E"; //Background color
+		ctx.fillStyle = this.theme[0]; //Background color
 		ctx.fillRect(0, 0, 2048, 1600); //Background
 		ctx.textAlign = "center"; //The align of the title
-		ctx.fillStyle = "#3E5EED"; //The color of the title
+		ctx.fillStyle = this.theme[2]; //The color of the title
 		ctx.fillText(this.title, 2048 / 2, 245, 1748); //Write the title
-		ctx.lineWidth = 15; //Line width
-		ctx.strokeStyle = "#3E5EED"; //Line color
+		ctx.lineWidth = 15; //Border width
+		ctx.strokeStyle = this.theme[1]; //Border color
 		ctx.strokeRect(150, 395, 1748, 275); //Square in the middle
 		ctx.strokeRect(7.5, 7.5, 2033, 1585); //Border
 		ctx.font = "100px DejaVu Sans Mono"; //The font of the information
