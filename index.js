@@ -17,6 +17,7 @@ module.exports = class SingleBarChart {
 	};
 
 	setTheme(backgroundcolor, bordercolor, titlecolor) {
+		let x = "ABCDEF1234567890";
 		if (backgroundcolor) {
 			if (backgroundcolor[0] != "#" || (backgroundcolor[0] == "#" && backgroundcolor.length < 7) || backgroundcolor.length > 7 || backgroundcolor.slice(1).split("").find(char => !x.includes(char)))
 				throw new Error("The \"backgroundcolor\" argument is invalid.");
