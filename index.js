@@ -16,6 +16,14 @@ module.exports = class SingleBarChart {
 		return this;
 	};
 
+	setBackground(path_or_buffer) {
+		if (!path_or_buffer)
+			throw new Error("The \"path_or_buffer\" argument cannot be empty.");
+		ctx.loadImage(path_or_buffer).then(data => {
+			ctx.drawImage(data, 0, 0, canvas.width, canvas.height);
+		});
+	};
+	
 	setTheme(backgroundcolor, bordercolor, titlecolor) {
 		let x = "ABCDEF1234567890";
 		if (backgroundcolor) {
