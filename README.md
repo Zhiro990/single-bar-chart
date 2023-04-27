@@ -76,6 +76,8 @@ const fs = require("fs/promises");
 })();
 ```
 
+![Example](./example.png)
+
 ---
 
 > *Note: This project is currently under development.*
