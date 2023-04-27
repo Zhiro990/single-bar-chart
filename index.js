@@ -1,4 +1,4 @@
- module.exports = class SingleBarChart {
+module.exports = class SingleBarChart {
 
 	constructor() {
 		this.title = "";
@@ -26,6 +26,9 @@
 	
 	setTheme(backgroundcolor, bordercolor, titlecolor) {
 		let x = "ABCDEF1234567890";
+		backgroundcolor = backgroundcolor.toUpperCase();
+		bordercolor = bordercolor.toUpperCase();
+		titlecolor = titlecolor.toUpperCase();
 		if (backgroundcolor) {
 			if (backgroundcolor[0] != "#" || (backgroundcolor[0] == "#" && backgroundcolor.length < 7) || backgroundcolor.length > 7 || backgroundcolor.slice(1).split("").find(char => !x.includes(char)))
 				throw new Error("The \"backgroundcolor\" argument is invalid.");
@@ -60,6 +63,7 @@
 		if (eval(this.datas.map(data => data.percentage).join(" + ") + " + " + percentage) > 100)
 			throw new Error("The total percentage exceeds 100%.");
 		let x = "ABCDEF1234567890";
+		hexcolor = hexcolor.toUpperCase();
 		if (hexcolor) {
 			if (hexcolor[0] != "#" || (hexcolor[0] == "#" && hexcolor.length < 7) || hexcolor.length > 7 || hexcolor.slice(1).split("").find(char => !x.includes(char)))
 				throw new Error("The \"hexcolor\" argument is invalid.");
