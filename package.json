@@ -1,10 +1,15 @@
 {
   "name": "single-bar-chart",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project can help you in making single bar chart.",
   "main": "index.js",
   "scripts": {},
-  "keywords": [],
+  "keywords": [
+		"chart",
+		"canvas",
+		"@napi-rs/canvas",
+		"nodejs"
+	],
   "author": "Zhiro990",
   "license": "ISC",
   "dependencies": {

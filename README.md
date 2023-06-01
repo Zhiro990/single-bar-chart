@@ -1,4 +1,4 @@
-## Single Bar Chart - Zhiro990
+## single-bar-chart v1.0.0
 
 This project can help you in making single bar chart.
 
@@ -65,18 +65,19 @@ const fs = require("fs/promises");
 	
 	let chart = new Chart()
 		.setTitle("Chart")
-		.setBackground("./Makima.jpeg")
+		.setBackground("./makima.jpeg")
 		.setTheme("#FFFFFF", "#7788FF", "#7788FF")
 		.addData("A", 75, "#5555FF")
 		.addData("B", 25, "#FF5555");
 	
 	let res = await Chart.createChart(chart);
-	await writeFile("image.png", res);
+	await writeFile("example.png", res);
 
 })();
 ```
 
-![Example](./example.png)
+![makima.jpeg](./makima.jpeg)
+![example.png](./example.png)
 
 ---
 
