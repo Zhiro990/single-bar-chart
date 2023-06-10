@@ -1,6 +1,6 @@
 {
   "name": "single-bar-chart",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "This project can help you in making single bar chart.",
   "main": "index.js",
   "scripts": {},

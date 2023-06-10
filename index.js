@@ -24,7 +24,7 @@ module.exports = class SingleBarChart {
 		return this;
 	};
 	
-	setTheme(backgroundcolor, bordercolor, titlecolor) {
+	setTheme(backgroundcolor="", bordercolor="", titlecolor="") {
 		let x = "ABCDEF1234567890";
 		backgroundcolor = backgroundcolor.toUpperCase();
 		bordercolor = bordercolor.toUpperCase();
