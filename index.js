@@ -23,12 +23,12 @@ module.exports = class SingleBarChart {
 		this.background = path_or_buffer;
 		return this;
 	};
-	
-	setTheme(backgroundcolor="", bordercolor="", titlecolor="") {
+
+	setTheme(backgroundcolor, bordercolor, titlecolor) {
 		let x = "ABCDEF1234567890";
-		backgroundcolor = backgroundcolor.toUpperCase();
-		bordercolor = bordercolor.toUpperCase();
-		titlecolor = titlecolor.toUpperCase();
+		backgroundcolor = backgroundcolor?.toUpperCase() || "";
+		bordercolor = bordercolor?.toUpperCase() || "";
+		titlecolor = titlecolor?.toUpperCase() || "";
 		if (backgroundcolor) {
 			if (backgroundcolor[0] != "#" || (backgroundcolor[0] == "#" && backgroundcolor.length < 7) || backgroundcolor.length > 7 || backgroundcolor.slice(1).split("").find(char => !x.includes(char)))
 				throw new Error("The \"backgroundcolor\" argument is invalid.");

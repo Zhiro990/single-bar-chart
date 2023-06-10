@@ -1,4 +1,4 @@
-## single-bar-chart v2.0.1
+## single-bar-chart v2.0.2
 
 This project can help you in making single bar chart.
 
