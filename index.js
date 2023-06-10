@@ -4,7 +4,7 @@ module.exports = class SingleBarChart {
 		this.title = "";
 		this.datas = [];
 		this.background = "";
-		this.theme = ["#000000", "#FFFFFF", "#FFFFFF"];
+		this.theme = ["#000000", "#FFFFFF00", "#FFFFFF"];
 		return this;
 	};
 
@@ -23,12 +23,12 @@ module.exports = class SingleBarChart {
 		this.background = path_or_buffer;
 		return this;
 	};
-	
+
 	setTheme(backgroundcolor, bordercolor, titlecolor) {
 		let x = "ABCDEF1234567890";
-		backgroundcolor = backgroundcolor.toUpperCase();
-		bordercolor = bordercolor.toUpperCase();
-		titlecolor = titlecolor.toUpperCase();
+		backgroundcolor = backgroundcolor?.toUpperCase() || "";
+		bordercolor = bordercolor?.toUpperCase() || "";
+		titlecolor = titlecolor?.toUpperCase() || "";
 		if (backgroundcolor) {
 			if (backgroundcolor[0] != "#" || (backgroundcolor[0] == "#" && backgroundcolor.length < 7) || backgroundcolor.length > 7 || backgroundcolor.slice(1).split("").find(char => !x.includes(char)))
 				throw new Error("The \"backgroundcolor\" argument is invalid.");
@@ -41,7 +41,7 @@ module.exports = class SingleBarChart {
 			if (titlecolor[0] != "#" || (titlecolor[0] == "#" && titlecolor.length < 7) || titlecolor.length > 7 || titlecolor.slice(1).split("").find(char => !x.includes(char)))
 				throw new Error("The \"titlecolor\" argument is invalid.");
 		};
-		this.theme = [backgroundcolor || "#000000", bordercolor || "#FFFFFF", titlecolor || "#FFFFFF"];
+		this.theme = [backgroundcolor || "#000000", bordercolor || "#FFFFFF00", titlecolor || "#FFFFFF"];
 		return this;
 	};
 
