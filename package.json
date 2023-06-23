@@ -11,7 +11,7 @@
 		"nodejs"
 	],
   "author": "Zhiro990",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@napi-rs/canvas": "^0.1.20"
   }
