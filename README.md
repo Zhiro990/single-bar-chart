@@ -5,7 +5,7 @@ This project can help you in making single bar chart.
 ### Installing
 
 ```bash
-npm install Zhiro990/single-bar-chart
+npm install krepowo/single-bar-chart
 ```
 
 ### Importing
